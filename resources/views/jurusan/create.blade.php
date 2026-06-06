@@ -1,3 +1,6 @@
+@extends('layout.app')
+@section('content')
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,5 +17,7 @@
         <button type="submit">Simpan</button>
         <a href="{{ route('jurusan.index') }}">Kembali</a>
     </form>
+
 </body>
 </html>
+@endsection
