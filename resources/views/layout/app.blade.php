@@ -81,11 +81,14 @@
                         <i class="fas fa-fw fa-table"></i>
                         <span>Kelola Mahasiswa</span></a>
                 </li>
-            <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="login.html">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Logout</span></a>
+                <form action="/logout" method="POST">
+                    @csrf
+                    <button type="submit" class="nav-link border-0 bg-transparent w-100 text-left">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </button>
+                </form>
             </li>
 
           
@@ -354,7 +357,10 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <form action="/logout" method="POST" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>

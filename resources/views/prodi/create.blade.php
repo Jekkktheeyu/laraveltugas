@@ -1,4 +1,4 @@
-    @extends('layout.app')
+@extends('layout.app')
 @section('content')
 <div class="container-fluid">
 
@@ -15,39 +15,41 @@
                 Form Tambah Prodi 
             </h6>
         </div>
+        <div class="card-body">
+            <form action="{{ route('prodi.index') }}" method="POST">
+                @csrf
+                
+                <div class="form-group">
+                    <label for="jurusan_id" class="font-weight-bold">Jurusan</label>
+                    <select name="jurusan_id" id="jurusan_id" class="form-control" required>
+                        <option value="" disabled selected>Pilih Jurusan</option>
+                        @foreach($jurusans as $jurusan)
+                            <option value="{{ $jurusan->id }}">
+                                {{ $jurusan->nama_jurusan }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
 
-    <h1>Tambah Prodi</h1>
+                <div class="form-group">
+                    <label for="nama_prodi" class="font-weight-bold">Nama Prodi</label>
+                    <input type="text" 
+                           id="nama_prodi"
+                           name="nama_prodi" 
+                           class="form-control" 
+                           placeholder="Masukkan nama prodi" 
+                           required>
+                </div>
 
-    <form action="/prodi" method="POST">
-        @csrf
-        <div>
-            <label>Jurusan</label>
-            <select name="jurusan_id">
-
-                @foreach($jurusans as $jurusan)
-
-                <option value="{{ $jurusan->id }}">
-                    {{ $jurusan->nama_jurusan }}
-                </option>
-                @endforeach
-            </select>
-        </div>
-        <br>
-        
-        <div>
-
-            <label>Nama Prodi</label>
-
-            <input type="text"
-                   name="nama_prodi">
-
-        </div>
-
-        <br>
-
-        <button type="submit" class="btn btn-primary shadow-sm">
+                <button type="submit" class="btn btn-primary shadow-sm">
                     <i class="fas fa-save"></i> Simpan
-        </button>
+                </button>
+                <a href="{{ route('prodi.index') }}" class="btn btn-secondary shadow-sm">
+                    <i class="fas fa-arrow-left"></i> Kembali
+                </a>
+            </form>
+        </div>
+    </div>
 
-    </form>
+</div>
 @endsection

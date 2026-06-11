@@ -16,7 +16,7 @@
             </h6>
         </div>
         <div class="card-body">
-            <form action="{{ route('jurusan.store') }}" method="POST">
+            <form action="{{ route('jurusan.index') }}" method="POST">
                 @csrf
                 
                 <div class="form-group">
