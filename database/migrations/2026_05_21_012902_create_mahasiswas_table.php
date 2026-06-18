@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->id();
 
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+
             $table->foreignId('prodi_id')->constrained('prodis')->cascadeOnDelete();
             $table->string('nim')->unique();
             $table->string('nama');

@@ -41,9 +41,10 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
+            @if(Auth::user()->role === 'admin')
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/dashboard">
+                <a class="nav-link" href="/admin/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -56,7 +57,6 @@
                 Interface
             </div>
 
-         
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -66,21 +66,25 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/jurusan">Jurusan</a>
-                        <a class="collapse-item" href="/prodi">Prodi</a>
-                       
+                        <a class="collapse-item" href="/admin/jurusan">Jurusan</a>
+                        <a class="collapse-item" href="/admin/prodi">Prodi</a>
                     </div>
-                   
                 </div>
-
-               
             </li>
-                <!-- Nav Item - Tables -->
-                <li class="nav-item active">
-                    <a class="nav-link" href="/mahasiswa">
-                        <i class="fas fa-fw fa-table"></i>
-                        <span>Kelola Mahasiswa</span></a>
-                </li>
+            <!-- Nav Item - Tables -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/admin/mahasiswa">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Kelola Mahasiswa</span></a>
+            </li>
+            @elseif(Auth::user()->role === 'mahasiswa')
+            <!-- Nav Item - Biodata -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/mahasiswa/biodata">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Biodata Saya</span></a>
+            </li>
+            @endif
             <li class="nav-item">
                 <form action="/logout" method="POST">
                     @csrf
@@ -282,7 +286,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="{{ asset('img/undraw_profile.svg') }}">
                             </a>
